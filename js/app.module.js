@@ -3,6 +3,8 @@
 
     angular
         .module('logger', [
-            'firebase'
+            'firebase',
+            'tangcloud',
+            'angularRipple'
         ]);
 })();

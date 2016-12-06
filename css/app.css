@@ -1,6 +1,7 @@
-html { background-color: #184f2c; }
-body { margin: 0; text-align: center;}
-input { padding:0; margin: 0; border: none;}
+html { background-color: #fff; }
+body { margin: 0; text-align: center; font-family: Roboto; }
+input { padding:0; margin: 0; border: none; }
+label { display: block; overflow: hidden; }
 .x3 { width: 25%; }
 .x4 { width: 33%; }
 .x6 { width: 50%; }
@@ -9,12 +10,136 @@ input { padding:0; margin: 0; border: none;}
 .formContainer {
   text-align: center;
   display: inline-block;
-  width: 700px;
+  width: 500px;
   margin-top: 300px;
 }
 .formContainer input {
   float: left;
-  padding: 20px;
+  padding: 37px 20px 20px 20px;
   box-sizing: border-box;
-  margin: 0 0 10px;
+  margin: 0 0 19px;
+  background: #f9f8f8;
+  border: 1px solid #eaeaea;
+  font-size: 16px;
+  outline: none;
+}
+.loggerSubmit {
+  padding: 20px;
+  width: 100%;
+  background: #009688;
+  border: 0;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+}
+.labelText {
+  display: block;
+  text-align: left;
+  margin-bottom: 4px;
+  font-size: 13px;
+  position: relative;
+  top: 31px;
+  left: 20px;
+  color: #716e6e;
+  font-weight: 300;
+}
+.progressContainer {
+  height: 50px;
+  border: 1px solid #eaeaea;
+}
+.progress {
+  width: 0%;
+  background: #009688;
+  height: 100%;
+  transition: .2s width ease-out;
+  max-width: 100%;
+}
+
+
+
+.tangcloud {
+    height: 500px;
+    width: 500px;
+}
+
+.tangcloud span {
+    line-height: 100%;
+}
+
+.tangcloud-item-1 {
+    font-size: 1.3em;
+    color: #080808;
+}
+
+.tangcloud-item-2 {
+    font-size: 1.6em;
+    color: #101010;
+}
+
+.tangcloud-item-3 {
+    font-size: 1.9em;
+    color: #181818;
+}
+
+.tangcloud-item-4 {
+    font-size: 2.2em;
+    color: #303030;
+}
+
+.tangcloud-item-5 {
+    font-size: 2.5em;
+    color: #282828;
+}
+
+.tangcloud-item-6 {
+    font-size: 2.8em;
+    color: #202020;
+}
+
+.tangcloud-item-7 {
+    font-size: 3.1em;
+    color: #383838;
+}
+
+.tangcloud-item-8 {
+    font-size: 3.4em;
+    color: #404040;
+}
+
+.tangcloud-item-9 {
+    font-size: 3.7em;
+    color: #484848;
+}
+
+.tangcloud-item-10 {
+    font-size: 4em;
+    color: #000000;
+}
+
+.tangcloud-item-hidden {
+    visibility: hidden;
+}
+
+
+
+[angular-ripple] {
+  position: relative;
+  overflow: hidden;
+}
+.angular-ripple {
+  display: block;
+  position: absolute;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  transform: scale(0);
+}
+.angular-ripple.animate {
+  animation: ripple 0.35s linear;
+}
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html style="">
   <head>
     <link rel="stylesheet" href="css/app.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   </head>
 
   <body ng-app="logger" ng-controller="AppController as app">
@@ -9,15 +10,30 @@
     <!-- HTML -->
 
     <div class="formContainer">
-      <input type="text" ng-model="name" class="x12"/>
-      <input type="number" ng-model="amount.hour" class="x12"/>
-      <input type="text" ng-model="body" class="x12"/>
-      <button ng-click="app.addHours(name, body, amount.hour)">Submit</button>
+
+      <div class="progressContainer">
+        <div class="progress" style="width: {{(current/final)*100}}%"></div>
+      </div>
+
+      <label>
+        <span class="labelText">Full Name</span>
+        <input type="text" ng-model="name" class="x12" spellcheck="false"/>
+      </label>
+      <label>
+        <span class="labelText">Amount of Hours Worked</span>
+        <input type="number" ng-model="amount.hour" class="x12" min="1" spellcheck="false"/>
+      </label>
+      <label>
+        <span class="labelText">Task Worked On</span>
+        <input type="text" ng-model="body" class="x12" spellcheck="false"/>
+      </label>
+      <button angular-ripple class="loggerSubmit" ng-click="app.addHours(name, body, amount.hour)">Submit</button>
     </div>
+
 
     <!-- SCRIPTS -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
     <script>
@@ -31,6 +47,8 @@
       };
       firebase.initializeApp(config);
     </script>
+    <script src="plugins/ripple.js"></script>
+    <script src="plugins/wordcloud.js"></script>
     <script src="js/app.module.js"></script>
     <script src="js/app.controller.js"></script>
 

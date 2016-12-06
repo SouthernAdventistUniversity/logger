@@ -10,10 +10,17 @@
     /* @ngInject */
     function Controller($scope, $firebaseArray) {
       var self = this;
+      var currentRef = firebase.database().ref('track').on("value", function(values){
+        $scope.current = values.val().currentAmount;
+        $scope.final = values.val().finalAmount;
+        $scope.$apply();
+      });
 
-
-
-
+      /*$scope.words = [
+        {word: "hello", size: 10},
+        {word: "hellods", size: 5},
+        {word: "helldsdso", size: 7}
+      ];*/
 
       this.addHours = function(name, body, newAmount) {
         var hoursRef = firebase.database().ref('track').child('currentAmount');
@@ -37,6 +44,5 @@
         });
         console.log(name, body, hours);
       }
-
     }
 })();
