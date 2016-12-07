@@ -37,6 +37,9 @@
                self.saveUser(name, body, newAmount);
             }
             else hours = newAmount;
+            $scope.name = "";
+            $scope.body = "";
+            $scope.amount = "";
             return hours;
           });
         }
