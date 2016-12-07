@@ -5,7 +5,7 @@
         .module('logger')
         .controller('AppController', Controller);
 
-    Controller.$inject = ['$scope', '$firebaseArray'];
+    Controller.$inject = ['$scope', '$firebaseArray', '$timeout'];
 
     /* @ngInject */
     function Controller($scope, $firebaseArray) {
@@ -13,14 +13,20 @@
       var currentRef = firebase.database().ref('track').on("value", function(values){
         $scope.current = values.val().currentAmount;
         $scope.final = values.val().finalAmount;
-        $scope.$apply();
+      ///  $scope.$apply();
       });
 
-      /*$scope.words = [
-        {word: "hello", size: 10},
-        {word: "hellods", size: 5},
-        {word: "helldsdso", size: 7}
-      ];*/
+      $scope.words = [];
+      var reasonRef = firebase.database().ref('users').orderByChild('reason').once("value", function(reasonList){
+        reasonList.forEach(function(reasons){
+          var newReason = {}
+          newReason.word = reasons.val().reason;
+          newReason.size = 5;
+          $scope.words.push(newReason)
+        });
+        console.log($scope.words);
+        $scope.$apply();
+      });
 
       this.addHours = function(name, body, newAmount) {
         var hoursRef = firebase.database().ref('track').child('currentAmount');
