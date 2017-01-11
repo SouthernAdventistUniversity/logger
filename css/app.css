@@ -1,5 +1,5 @@
 html { background-color: #fff; }
-body { margin: 0; text-align: center; font-family: Roboto; }
+body { margin: 0; text-align: center;}
 input { padding:0; margin: 0; border: none; }
 label { display: block; overflow: hidden; }
 .x3 { width: 25%; }
@@ -7,121 +7,175 @@ label { display: block; overflow: hidden; }
 .x6 { width: 50%; }
 .x12 { width: 100%; }
 
-.formContainer {
-  text-align: center;
-  display: inline-block;
-  width: 500px;
-  margin-top: 300px;
+@font-face { 
+    src: url('../fonts/helvetica-neue-lt-std-47-light-condensed.otf');
+    font-family: 'Helvetica Light';
 }
-.formContainer input {
-  float: left;
-  padding: 37px 20px 20px 20px;
-  box-sizing: border-box;
-  margin: 0 0 19px;
-  background: #f9f8f8;
-  border: 1px solid #eaeaea;
-  font-size: 16px;
-  outline: none;
+@font-face { 
+    src: url('../fonts/helvetica-neue-lt-std-67-medium-condensed.otf');
+    font-family: 'Helvetica Medium';
 }
-.loggerSubmit {
-  padding: 20px;
-  width: 100%;
-  background: #184f2c;
-  border: 0;
-  color: #fff;
-  font-size: 15px;
-  outline: none;
-  cursor: pointer;
+@font-face { 
+    src: url('../fonts/helvetica-neue-lt-std-77-bold-condensed.otf');
+    font-family: 'Helvetica Bold';
 }
-.labelText {
-  display: block;
-  text-align: left;
-  margin-bottom: 4px;
-  font-size: 13px;
-  position: relative;
-  top: 31px;
-  left: 20px;
-  color: #716e6e;
-  font-weight: 300;
+
+md-input-container {
+    width: 100%;
+    text-align: left;
+    color: #fff;
 }
+
+.map {
+    height:700px;
+    position: relative;
+}
+
+ng-map {
+    height:100%;
+}
+
+.banner {
+    position: absolute;
+    bottom: 85px;
+    background: #FF8849;
+    color: #fff;
+    font-size: 72px;
+    font-family: Helvetica Light;
+    height: 72px;
+    padding: 12px;
+    left: 50%;
+    width: 754px;
+    margin-left: -377px;
+    pointer-events: none;
+}
+
+.banner span {
+    font-family: Helvetica Bold;
+    display: inline-block;
+}
+
+.textSection {
+    height: 700px;
+    text-align: center;
+    padding: 115px;
+    box-sizing: border-box;
+    font-family: Open Sans;
+    background: #fff;
+}
+.textSection div {
+    width: 638px;
+    margin: 0 auto;
+    margin-bottom: 29px;
+    font-size: 24px;
+}
+
 .progressContainer {
-  height: 50px;
-  border: 1px solid #eaeaea;
+  height: 131px;
+  background-color: #E3E696;
 }
 .progress {
-  width: 0%;
-  background: #184f2c;
+  min-width: 5%;
+  background: #CED54A;
   height: 100%;
-  transition: .2s width ease-out;
+  transition: .6s width ease-out;
   max-width: 100%;
+  position: relative;
+  width: 0%;
+}
+.progress::before {
+    content: attr(data-number);
+    position: absolute;
+    right: -75px;
+    font-size: 24px;
+    font-family: Open Sans;
+    font-weight: bold;
+    top: 40px;
+    text-align: center;
+    width: 150px;
+}
+.progress::after {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 64px;
+    background: #005293;
+    position: absolute;
+    right: -32px;
+    transform: rotate(45deg);
+    bottom: -32px;
 }
 
-
-
-.tangcloud {
-    height: 500px;
-    width: 500px;
+.final {
+    font-size: 48px;
+    font-family: Open Sans;
+    color: #fff;
+    position: relative;
+    top: 29px;
+    float: right;
+    right: 32px;
+    font-weight: 600;
 }
 
-.tangcloud span {
-    line-height: 100%;
+.formContainer {
+    height: 900px;
+    background-color: #005293;
+    box-sizing: border-box;
+    padding: 115px;
 }
 
-.tangcloud-item-1 {
-    font-size: 1.3em;
-    color: #080808;
+.formText {
+    color: #FADA63;
+    font-family: Open Sans;
+    width: 680px;
+    font-size: 24px;
+    font-weight: 300;
+    margin: 0 auto;
 }
 
-.tangcloud-item-2 {
-    font-size: 1.6em;
-    color: #101010;
+.form {
+    margin: 70px auto 0;
+    width: 590px;
+    border: 1px solid #3674A6;
+    padding: 59px 66px;
+    box-sizing: border-box;
+
 }
 
-.tangcloud-item-3 {
-    font-size: 1.9em;
-    color: #181818;
+label {
+    color: #70ADDD !important;
+}
+input {
+    border-color: #fff !important;
+    color: #fff !important;
+    padding: 20px 0 !important;
 }
 
-.tangcloud-item-4 {
-    font-size: 2.2em;
-    color: #303030;
+.loggerSubmit {
+    width: 246px;
+    background: transparent;
+    border: 0;
+    color: #FADA63;
+    font-size: 24px;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #FADA63;
+    font-family: Helvetica Bold;
+    height: 58px;
+    padding-top: 10px;
+    margin-top: 38px;
+    transition: .3s all ease-out;
 }
 
-.tangcloud-item-5 {
-    font-size: 2.5em;
-    color: #282828;
+.loggerSubmit.error {
+    border-color: #3674A6;
+    color: #3674A6;
+    pointer-events: none;
 }
 
-.tangcloud-item-6 {
-    font-size: 2.8em;
-    color: #202020;
+.md-input-message-animation {
+    color: #FADA63 !important;
 }
-
-.tangcloud-item-7 {
-    font-size: 3.1em;
-    color: #383838;
-}
-
-.tangcloud-item-8 {
-    font-size: 3.4em;
-    color: #404040;
-}
-
-.tangcloud-item-9 {
-    font-size: 3.7em;
-    color: #484848;
-}
-
-.tangcloud-item-10 {
-    font-size: 4em;
-    color: #000000;
-}
-
-.tangcloud-item-hidden {
-    visibility: hidden;
-}
-
-
 
 [angular-ripple] {
   position: relative;

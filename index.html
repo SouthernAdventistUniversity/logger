@@ -1,41 +1,111 @@
 <!DOCTYPE html>
 <html style="">
   <head>
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WRH83G');
+    </script>
+
+    <script>
+        Object.defineProperty(window, "Cookies", {
+        get: function() {
+            return document.cookie.split(';').reduce(function(cookies, cookie) {
+                cookies[(cookie.split("=")[0]).replace(/ /g,'')] = unescape(cookie.split('=')[1]);
+                return cookies
+            }, {});
+        }
+      });
+    </script>
+
     <link rel="stylesheet" href="css/app.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.min.css">
   </head>
 
-  <body ng-app="logger" ng-controller="AppController as app">
+  <body ng-app="logger" ng-controller="AppController as app" ng-cloak>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRH83G"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- HTML -->
 
+  
+    <div class="map">
+      <ng-map ng-cloak on-resize="centerMap($event)" center="[27.0416493, -40.051625]" zoom="4" max-zoom="4" min-zoom="4" scrollwheel="false" disable-default-u-i="true"
+        styles="[{'featureType':'all','elementType':'labels.text.fill','stylers':[{'saturation':36},{'color':'#0c2f19'},{'lightness':40}]},{'featureType':'all','elementType':'labels.text.stroke','stylers':[{'visibility':'on'},{'color':'#0c2f19'},{'lightness':16}]},{'featureType':'all','elementType':'labels.icon','stylers':[{'visibility':'off'}]},{'featureType':'administrative','elementType':'geometry.fill','stylers':[{'color':'#0c2f19'}]},{'featureType':'administrative','elementType':'geometry.stroke','stylers':[{'color':'#0c2f19'},{'lightness':17},{'weight':1.2}]},{'featureType':'landscape','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':20}]},{'featureType':'poi','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':21}]},{'featureType':'road.highway','elementType':'geometry.fill','stylers':[{'color':'#0c2f19'},{'lightness':17}]},{'featureType':'road.highway','elementType':'geometry.stroke','stylers':[{'color':'#0c2f19'},{'lightness':29},{'weight':0.2}]},{'featureType':'road.arterial','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':18}]},{'featureType':'road.local','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':16}]},{'featureType':'transit','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':19}]},{'featureType':'water','elementType':'geometry','stylers':[{'color':'#d6e8fe'},{'lightness':17}]}]">
+        <marker ng-repeat="location in locations" animation="DROP" position="'{{location.city}}, {{location.state}}''" on-click="showDirections(event, {{location}})";></marker>
+      </ng-map>
+      <div class="banner"><span>125,000</span> HOURS OF SERVICE</div>
+    </div>
+    
+    <div class="textSection">
+      <div>The students, employees, and alumni of Southern Adventist University have a long tradition of serving others.</div>
+      <div>Whether it’s handing out warm clothes and sandwiches to the homeless in Chattanooga, providing free health clinics in Central America, or tutoring struggling middle-schoolers in your hometown, each moment makes a difference and brings a little light to the world. </div>
+      <div>As we mark Southern’s 125th anniversary, we want to honor that tradition by collecting your hours of service, aiming to reach a collective total of 125,000 by the end of the year. </div>
+    </div>
+  
+    <div class="progressContainer">
+      <div class="final">{{final | number:0}}</div>
+      <div class="progress" ng-attr-data-number="{{current | number:0}}" style="width: {{(current/final)*100}}%"></div>
+    </div>
+  
     <div class="formContainer">
-
-      <div class="progressContainer">
-        <div class="progress" style="width: {{(current/final)*100}}%"></div>
+      <div class="formText">
+        You’re already being the hands and feet of Jesus, so let us know what you’re doing, and together we’ll reach our goal of <b>125,000 hours</b> of service in <b>2017</b>.
       </div>
 
-      <label>
-        <span class="labelText">Full Name</span>
-        <input type="text" ng-model="name" class="x12" spellcheck="false"/>
-      </label>
-      <label>
-        <span class="labelText">Amount of Service Hours</span>
-        <input type="number" ng-model="amount" class="x12" min="1" spellcheck="false"/>
-      </label>
-      <label>
-        <span class="labelText">Task Worked On</span>
-        <input type="text" ng-model="body" class="x12" spellcheck="false"/>
-      </label>
-      <button angular-ripple class="loggerSubmit" ng-click="app.addHours(name, body, amount)">Submit</button>
+      <form name="form" class="form">
+
+        <md-input-container>
+          <label>Full name</label>
+          <input type="text" ng-required="true" ng-minlength="1" ng-model="service.name" class="x12" spellcheck="false" md-no-asterisk/>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Task worked on</label>
+          <input type="text" ng-required="true" ng-minlength="1" ng-model="service.body" class="x12" spellcheck="false" md-no-asterisk/>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Amount of service hours</label>
+          <input type="number" ng-required="true" ng-minlength="1" name="amount" ng-model="service.amount" class="x12" min="1" max="40" md-no-asterisk/>
+          <div ng-messages="form.amount.$error">
+            <div ng-message="max">Hours must be 40 or below.</div>
+            <div ng-message="min">Hours must be above 0.</div>
+            <div ng-message="number">Numbers only.</div>
+          </div>
+        </md-input-container>
+        <button angular-ripple class="loggerSubmit" formnovalidate ng-class="{error : !form.$valid || form.$pristine}" ng-click="app.addHours(service.name, service.body, service.amount); service = {}">Submit</button>
+      </form>
     </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-    <!--<tang-cloud words="words"></tangcloud>-->
     <!-- SCRIPTS -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAWfBDo6UTSbMb5P2nDE9z7dNUOD908fR4"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <script>
       // Initialize Firebase
       var config = {
@@ -48,7 +118,7 @@
       firebase.initializeApp(config);
     </script>
     <script src="plugins/ripple.js"></script>
-    <script src="plugins/wordcloud.js"></script>
+    <script src="plugins/ng-map.min.js"></script>
     <script src="js/app.module.js"></script>
     <script src="js/app.controller.js"></script>
 

@@ -4,7 +4,9 @@
     angular
         .module('logger', [
             'firebase',
-            'tangcloud',
-            'angularRipple'
+            'angularRipple',
+            'ngMap',
+            'ngMaterial',
+            'ngMessages'
         ]);
 })();
