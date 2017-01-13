@@ -1,5 +1,6 @@
 html { background-color: #fff; }
-body { margin: 0; text-align: center;}
+body { margin: 0;}
+.logger {overflow: auto;}
 input { padding:0; margin: 0; border: none; }
 label { display: block; overflow: hidden; }
 .x3 { width: 25%; }
@@ -20,39 +21,60 @@ label { display: block; overflow: hidden; }
     font-family: 'Helvetica Bold';
 }
 
+southernmainmenu header {
+    position: fixed !important;
+}
+southernmainmenu * {
+    transition: none !important;
+}
+
 md-input-container {
     width: 100%;
     text-align: left;
     color: #fff;
 }
-
-.map {
-    height:700px;
-    position: relative;
+md-input-container {
+    margin: 18px 0 0 !important;
 }
 
+#pusher {
+    margin-top: 892px;
+}
+
+.map {
+    height: 1050px;
+    position: absolute;
+    width: 100%;
+    top: 192px;
+}
+.isSmall .map {
+    top: 120px !important;
+}
 ng-map {
     height:100%;
 }
 
 .banner {
-    position: absolute;
-    bottom: 85px;
     background: #FF8849;
     color: #fff;
-    font-size: 72px;
+    font-size: 62px;
     font-family: Helvetica Light;
-    height: 72px;
     padding: 12px;
-    left: 50%;
-    width: 754px;
-    margin-left: -377px;
+    width: 742px;
     pointer-events: none;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+.isSmall .banner {
+    font-size: 36px !important;
 }
 
-.banner span {
+.banner .bold {
     font-family: Helvetica Bold;
     display: inline-block;
+}
+.isSmall .banner .bold {
+    margin-top: 26px !important;
 }
 
 .textSection {
@@ -64,24 +86,32 @@ ng-map {
     background: #fff;
 }
 .textSection div {
-    width: 638px;
     margin: 0 auto;
     margin-bottom: 29px;
     font-size: 24px;
 }
+.isSmall .textSection {
+    padding: 40px 20px 20px 20px !important;
+}
 
 .progressContainer {
-  height: 131px;
-  background-color: #E3E696;
+    height: 131px;
+    background-color: #E3E696;
+    font-size: 48px;
+    text-align: right;
+}
+.progressContainer.complete {
+    text-align: center;
 }
 .progress {
-  min-width: 5%;
-  background: #CED54A;
-  height: 100%;
-  transition: .6s width ease-out;
-  max-width: 100%;
-  position: relative;
-  width: 0%;
+    min-width: 5%;
+    background: #CED54A;
+    height: 100%;
+    transition: .3s width ease-out;
+    max-width: 100%;
+    position: relative;
+    width: 0%;
+    float: left;
 }
 .progress::before {
     content: attr(data-number);
@@ -93,13 +123,14 @@ ng-map {
     top: 40px;
     text-align: center;
     width: 150px;
+    transition: .3s font-size ease-out;
 }
 .progress::after {
     content: '';
     display: block;
     width: 64px;
     height: 64px;
-    background: #005293;
+    background: #FFF;
     position: absolute;
     right: -32px;
     transform: rotate(45deg);
@@ -112,16 +143,36 @@ ng-map {
     color: #fff;
     position: relative;
     top: 29px;
-    float: right;
     right: 32px;
     font-weight: 600;
+    display: inline-block;
+}
+.complete .final {
+    right: 0;
+    color: #184f2c;
+    font-family: Open Sans;
+    font-weight: bold;
+}
+.isSmall .final {
+    display: none !important;
 }
 
 .formContainer {
-    height: 900px;
-    background-color: #005293;
+    height: 1050px;
+    background-color: rgba(0, 82, 147, 0.75);
     box-sizing: border-box;
-    padding: 115px;
+    padding: 95px;
+    margin-top: 192px;
+    position: relative;
+    transition: .3s background-color ease-out;
+    pointer-events: none;
+}
+.formContainer.complete {
+    background-color: transparent;
+}
+.isSmall .formContainer {
+    padding: 0 !important;
+    margin-top: 120px !important;
 }
 
 .formText {
@@ -129,8 +180,14 @@ ng-map {
     font-family: Open Sans;
     width: 680px;
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 400;
     margin: 0 auto;
+    text-align: center;
+    opacity: 1;
+    transition: .3s opacity ease-out; 
+}
+.formText.complete {
+    opacity: 0;
 }
 
 .form {
@@ -139,13 +196,26 @@ ng-map {
     border: 1px solid #3674A6;
     padding: 59px 66px;
     box-sizing: border-box;
+    text-align: center;
+    background-color: rgba(0, 82, 147, 0.9);
+    opacity: 1;
+    transition: .3s opacity ease-out; 
+    pointer-events: all;
+}
 
+.isSmall .form {
+    padding: 31px !important;
+    margin: 0 auto 43px !important;
+}
+
+.form.complete {
+    opacity: 0;
 }
 
 label {
     color: #70ADDD !important;
 }
-input {
+.form input {
     border-color: #fff !important;
     color: #fff !important;
     padding: 20px 0 !important;
@@ -165,6 +235,9 @@ input {
     padding-top: 10px;
     margin-top: 38px;
     transition: .3s all ease-out;
+}
+.isSmall .loggerSubmit {
+    width: 90% !important;
 }
 
 .loggerSubmit.error {
