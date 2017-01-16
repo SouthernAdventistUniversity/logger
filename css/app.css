@@ -1,6 +1,6 @@
 html { background-color: #fff; }
 body { margin: 0;}
-.logger {overflow: auto;}
+.logger {}
 input { padding:0; margin: 0; border: none; }
 label { display: block; overflow: hidden; }
 .x3 { width: 25%; }
@@ -8,25 +8,6 @@ label { display: block; overflow: hidden; }
 .x6 { width: 50%; }
 .x12 { width: 100%; }
 
-@font-face { 
-    src: url('../fonts/helvetica-neue-lt-std-47-light-condensed.otf');
-    font-family: 'Helvetica Light';
-}
-@font-face { 
-    src: url('../fonts/helvetica-neue-lt-std-67-medium-condensed.otf');
-    font-family: 'Helvetica Medium';
-}
-@font-face { 
-    src: url('../fonts/helvetica-neue-lt-std-77-bold-condensed.otf');
-    font-family: 'Helvetica Bold';
-}
-
-southernmainmenu header {
-    position: fixed !important;
-}
-southernmainmenu * {
-    transition: none !important;
-}
 
 md-input-container {
     width: 100%;
@@ -45,10 +26,10 @@ md-input-container {
     height: 1050px;
     position: absolute;
     width: 100%;
-    top: 192px;
+    top: 0;
 }
 .isSmall .map {
-    top: 120px !important;
+    top: 72px !important;
 }
 ng-map {
     height:100%;
@@ -58,7 +39,8 @@ ng-map {
     background: #FF8849;
     color: #fff;
     font-size: 62px;
-    font-family: Helvetica Light;
+    font-family: 'Neue Helvetica Condensed';
+    font-weight: 300;
     padding: 12px;
     width: 742px;
     pointer-events: none;
@@ -70,7 +52,8 @@ ng-map {
 }
 
 .banner .bold {
-    font-family: Helvetica Bold;
+    font-family: 'Neue Helvetica Condensed';
+    font-weight: 700;
     display: inline-block;
 }
 .isSmall .banner .bold {
@@ -78,7 +61,7 @@ ng-map {
 }
 
 .textSection {
-    height: 700px;
+    /* height: 700px; */
     text-align: center;
     padding: 115px;
     box-sizing: border-box;
@@ -99,6 +82,8 @@ ng-map {
     background-color: #E3E696;
     font-size: 48px;
     text-align: right;
+    position: relative;
+    z-index: 400;
 }
 .progressContainer.complete {
     text-align: center;
@@ -112,6 +97,9 @@ ng-map {
     position: relative;
     width: 0%;
     float: left;
+}
+.isSmall .progress {
+  min-width: 14%;;
 }
 .progress::before {
     content: attr(data-number);
@@ -162,7 +150,7 @@ ng-map {
     background-color: rgba(0, 82, 147, 0.75);
     box-sizing: border-box;
     padding: 95px;
-    margin-top: 192px;
+    /*margin-top: 192px; */
     position: relative;
     transition: .3s background-color ease-out;
     pointer-events: none;
@@ -172,7 +160,7 @@ ng-map {
 }
 .isSmall .formContainer {
     padding: 0 !important;
-    margin-top: 120px !important;
+    top: 72px !important;
 }
 
 .formText {
@@ -184,14 +172,15 @@ ng-map {
     margin: 0 auto;
     text-align: center;
     opacity: 1;
-    transition: .3s opacity ease-out; 
+    transition: .3s opacity ease-out;
+    padding-bottom: 30px;
 }
 .formText.complete {
     opacity: 0;
 }
 
 .form {
-    margin: 70px auto 0;
+    margin: 20px auto 0;
     width: 590px;
     border: 1px solid #3674A6;
     padding: 59px 66px;
@@ -199,7 +188,7 @@ ng-map {
     text-align: center;
     background-color: rgba(0, 82, 147, 0.9);
     opacity: 1;
-    transition: .3s opacity ease-out; 
+    transition: .3s opacity ease-out;
     pointer-events: all;
 }
 
@@ -230,7 +219,8 @@ label {
     outline: none;
     cursor: pointer;
     border: 1px solid #FADA63;
-    font-family: Helvetica Bold;
+    font-family: 'Neue Helvetica Condensed';
+    font-weight: 700;
     height: 58px;
     padding-top: 10px;
     margin-top: 38px;
@@ -269,4 +259,26 @@ label {
     opacity: 0;
     transform: scale(2.5);
   }
+}
+
+@media screen and (min-width: 40em) {
+  .banner {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (min-width: 51.25em) {
+  .banner {
+    margin-top: 130px;
+  }
+  .isSmall .banner .bold {
+    margin: 0 !important;
+  }
+  .isSmall .progress {
+    min-width: 4%;
+  }
+}
+
+@media screen and (min-width: 53.25em) {
+
 }
