@@ -11,7 +11,7 @@
     </script>
 
     <script>
-        Object.defineProperty(window, "Cookies", {
+      Object.defineProperty(window, "Cookies", {
         get: function() {
             return document.cookie.split(';').reduce(function(cookies, cookie) {
                 cookies[(cookie.split("=")[0]).replace(/ /g,'')] = unescape(cookie.split('=')[1]);
@@ -74,7 +74,7 @@
 
             <md-input-container>
               <label>Amount of service hours</label>
-              <input type="number" ng-required="true" ng-minlength="1" name="amount" ng-model="service.amount" class="x12" min="1" max="40" md-no-asterisk/>
+              <input type="number" ng-required="true" ng-minlength="1" name="amount" ng-model="service.amount" class="x12" min="1" max="40" step="any" md-no-asterisk/>
               <div ng-messages="form.amount.$error">
                 <div ng-message="max">Hours must be 40 or below.</div>
                 <div ng-message="min">Hours must be above 0.</div>
