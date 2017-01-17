@@ -26,7 +26,7 @@ md-input-container {
   padding-top: 192px;
 }
 
-.isSmall .logger {
+.isSmall.logger {
   padding-top: 0;
 }
 
@@ -291,6 +291,10 @@ label {
 }
 .show-btn:after {
   transform: rotate(90deg);
+}
+.isSmall .show-btn,
+.isSmall .close-btn {
+  display: none;
 }
 
 [angular-ripple] {
