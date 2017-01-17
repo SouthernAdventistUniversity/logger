@@ -5,15 +5,14 @@
         .module('logger')
         .controller('AppController', Controller);
 
-    Controller.$inject = ['$scope', '$firebaseArray', '$timeout', '$http', '$mdMedia'];
+    Controller.$inject = ['$scope', '$firebaseArray', '$timeout', '$http', '$mdMedia', 'NgMap'];
 
     /* @ngInject */
-    function Controller($scope, $firebaseArray, $timeout, $http, $mdMedia) {
+    function Controller($scope, $firebaseArray, $timeout, $http, $mdMedia, NgMap) {
       var self = this;
       $scope.service = {};
       $scope.complete = false;
       $scope.$watch(function() { return $mdMedia('max-width: 960px'); }, function(small) {
-        console.log(small);
         $scope.screenIsSmall = small;
       });
       
@@ -84,20 +83,32 @@
           });
       }
 
-      $scope.showDirections = function(event, data){
-        var infowindow = new google.maps.InfoWindow(),
-            center = new google.maps.LatLng(data.lat + 2, data.long),
+      $scope.infoWindow = function(event, data){
+        var center = new google.maps.LatLng(data.lat + 2, data.long),
             loc = data.city + data.state,
             cleanLoc = loc.replace(/[.-]/g, "");
 
-        firebase.database().ref('users/' + cleanLoc).child('totalHours').on("value", function(values){
-          infowindow.setContent(
-            values.val() + ' hours from ' + data.city + ', ' + data.state
-          ); 
-        });  
+        NgMap.getMap().then(function(map){
+          var marker = new google.maps.Marker({
+            map: map,
+            position: new google.maps.LatLng(data.lat, data.long)
+          });
+          firebase.database().ref('users/' + cleanLoc).child('totalHours').on("value", function(values){
+            var info = new SnazzyInfoWindow({
+              marker: marker,
+              content: values.val() + ' hours from ' + data.city + ', ' + data.state
+            });
+            info.open();
+          });  
 
-        infowindow.setPosition(center);
-        infowindow.open($scope.map);
+          
+        });
+
+
+
+
+        //infowindow.setPosition(center);
+        //infowindow.open($scope.map);
       }
 
     }

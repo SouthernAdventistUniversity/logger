@@ -28,6 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.min.css">
+    <link rel="stylesheet" href="css/snazzy-window.css">
   </head>
 
   <body>
@@ -43,7 +44,7 @@
       <div class="map">
         <ng-map ng-cloak on-resize="centerMap($event)" center="[27.0416493, -40.051625]" zoom="4" max-zoom="4" min-zoom="4" scrollwheel="false" disable-default-u-i="true"
           styles="[{'featureType':'all','elementType':'labels.text.fill','stylers':[{'saturation':36},{'color':'#0c2f19'},{'lightness':40}]},{'featureType':'all','elementType':'labels.text.stroke','stylers':[{'visibility':'on'},{'color':'#0c2f19'},{'lightness':16}]},{'featureType':'all','elementType':'labels.icon','stylers':[{'visibility':'off'}]},{'featureType':'administrative','elementType':'geometry.fill','stylers':[{'color':'#0c2f19'}]},{'featureType':'administrative','elementType':'geometry.stroke','stylers':[{'color':'#0c2f19'},{'lightness':17},{'weight':1.2}]},{'featureType':'landscape','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':20}]},{'featureType':'poi','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':21}]},{'featureType':'road.highway','elementType':'geometry.fill','stylers':[{'color':'#0c2f19'},{'lightness':17}]},{'featureType':'road.highway','elementType':'geometry.stroke','stylers':[{'color':'#0c2f19'},{'lightness':29},{'weight':0.2}]},{'featureType':'road.arterial','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':18}]},{'featureType':'road.local','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':16}]},{'featureType':'transit','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':19}]},{'featureType':'water','elementType':'geometry','stylers':[{'color':'#d6e8fe'},{'lightness':17}]}]">
-          <marker ng-repeat="location in locations" animation="DROP" position="[{{location.lat}}, {{location.long}}]" on-click="showDirections(event, {{location}})";></marker>
+          <marker ng-repeat="location in locations" animation="DROP" position="[{{location.lat}}, {{location.long}}]" on-click="infoWindow(event, {{location}})";></marker>
         </ng-map>
 
       </div>
@@ -147,6 +148,7 @@
 </script>
     <script src="plugins/ripple.js"></script>
     <script src="plugins/ng-map.min.js"></script>
+    <script src="plugins/snazzy-window.js"></script>
     <script src="js/app.module.js"></script>
     <script src="js/app.controller.js"></script>
 
