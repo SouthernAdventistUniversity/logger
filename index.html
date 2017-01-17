@@ -11,7 +11,7 @@
     </script>
 
     <script>
-        Object.defineProperty(window, "Cookies", {
+      Object.defineProperty(window, "Cookies", {
         get: function() {
             return document.cookie.split(';').reduce(function(cookies, cookie) {
                 cookies[(cookie.split("=")[0]).replace(/ /g,'')] = unescape(cookie.split('=')[1]);
@@ -22,7 +22,9 @@
     </script>
 
     <link rel="stylesheet" href="css/app.css"/>
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="//southern.edu/_resources-v2/css/fonts-neue-cond.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.min.css">
@@ -35,45 +37,53 @@
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- HTML -->
- 
-      
-    
+
+
+
       <div class="map">
         <ng-map ng-cloak on-resize="centerMap($event)" center="[27.0416493, -40.051625]" zoom="4" max-zoom="4" min-zoom="4" scrollwheel="false" disable-default-u-i="true"
           styles="[{'featureType':'all','elementType':'labels.text.fill','stylers':[{'saturation':36},{'color':'#0c2f19'},{'lightness':40}]},{'featureType':'all','elementType':'labels.text.stroke','stylers':[{'visibility':'on'},{'color':'#0c2f19'},{'lightness':16}]},{'featureType':'all','elementType':'labels.icon','stylers':[{'visibility':'off'}]},{'featureType':'administrative','elementType':'geometry.fill','stylers':[{'color':'#0c2f19'}]},{'featureType':'administrative','elementType':'geometry.stroke','stylers':[{'color':'#0c2f19'},{'lightness':17},{'weight':1.2}]},{'featureType':'landscape','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':20}]},{'featureType':'poi','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':21}]},{'featureType':'road.highway','elementType':'geometry.fill','stylers':[{'color':'#0c2f19'},{'lightness':17}]},{'featureType':'road.highway','elementType':'geometry.stroke','stylers':[{'color':'#0c2f19'},{'lightness':29},{'weight':0.2}]},{'featureType':'road.arterial','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':18}]},{'featureType':'road.local','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':16}]},{'featureType':'transit','elementType':'geometry','stylers':[{'color':'#0c2f19'},{'lightness':19}]},{'featureType':'water','elementType':'geometry','stylers':[{'color':'#d6e8fe'},{'lightness':17}]}]">
           <marker ng-repeat="location in locations" animation="DROP" position="[{{location.lat}}, {{location.long}}]" on-click="showDirections(event, {{location}})";></marker>
         </ng-map>
-        
+
       </div>
 
-      <div class="formContainer" ng-cloak ng-class="{complete: complete}" layout="row" layout-wrap >
-        <div class="banner" flex-xs="100"><span class="bold">CELEBRATE</span><span> OUR ANNIVERSARY WHEREVER YOU ARE</span></div>
-        <div class="formText" flex-xs="80" ng-class="{complete: complete}">
-          Let's reach <b>125,000 hours</b> of Community Service <b>together</b>.
+      <div class="formContainer" ng-cloak ng-class="{complete: complete}">
+
+        <div layout="row">
+          <div class="banner" flex-xs="100"><span class="bold">CELEBRATE</span><span> OUR ANNIVERSARY WHEREVER YOU ARE</span></div>
         </div>
 
-        <form name="form" class="form" flex-xs="90" ng-class="{complete: complete}">
-          <md-input-container>
-            <label>Full name</label>
-            <input type="text" ng-required="true" ng-minlength="1" ng-model="service.name" class="x12" spellcheck="false" md-no-asterisk/>
-          </md-input-container>
+        <div layout="row">
+          <div class="formText" flex-xs="80" ng-class="{complete: complete}">
+            Let's reach <b>125,000 hours</b> of Community Service <b>together</b>.
+          </div>
+        </div>
 
-          <md-input-container>
-            <label>Task worked on</label>
-            <input type="text" ng-required="true" ng-minlength="1" ng-model="service.body" class="x12" spellcheck="false" md-no-asterisk/>
-          </md-input-container>
+        <div layout="row">
+          <form name="form" class="form" flex-xs="90" ng-class="{complete: complete}">
+            <md-input-container>
+              <label>Full name</label>
+              <input type="text" ng-required="true" ng-minlength="1" ng-model="service.name" class="x12" spellcheck="false" md-no-asterisk/>
+            </md-input-container>
 
-          <md-input-container>
-            <label>Amount of service hours</label>
-            <input type="number" ng-required="true" ng-minlength="1" name="amount" ng-model="service.amount" class="x12" min="1" max="40" md-no-asterisk/>
-            <div ng-messages="form.amount.$error">
-              <div ng-message="max">Hours must be 40 or below.</div>
-              <div ng-message="min">Hours must be above 0.</div>
-              <div ng-message="number">Numbers only.</div>
-            </div>
-          </md-input-container>
-          <button angular-ripple class="loggerSubmit" formnovalidate ng-class="{error : !form.$valid || form.$pristine}" ng-click="app.addHours(service.name, service.body, service.amount); service = {}">Submit</button>
-        </form>
+            <md-input-container>
+              <label>Task worked on</label>
+              <input type="text" ng-required="true" ng-minlength="1" ng-model="service.body" class="x12" spellcheck="false" md-no-asterisk/>
+            </md-input-container>
+
+            <md-input-container>
+              <label>Amount of service hours</label>
+              <input type="number" ng-required="true" ng-minlength="1" name="amount" ng-model="service.amount" class="x12" min="1" max="40" step="any" md-no-asterisk/>
+              <div ng-messages="form.amount.$error">
+                <div ng-message="max">Hours must be 40 or below.</div>
+                <div ng-message="min">Hours must be above 0.</div>
+                <div ng-message="number">Numbers only.</div>
+              </div>
+            </md-input-container>
+            <button angular-ripple class="loggerSubmit" formnovalidate ng-class="{error : !form.$valid || form.$pristine}" ng-click="app.addHours(service.name, service.body, service.amount); service = {}">Submit</button>
+          </form>
+        </div>
       </div>
 
       <div class="progressContainer" ng-class="{complete : current >= final}">
@@ -81,20 +91,20 @@
         <div class="final" ng-if="current >= final">{{current | number:0}}</div>
         <div class="progress" ng-attr-data-number="{{current | number:0}}" ng-if="current < final" style="width: {{(current/final)*100}}%;"></div>
       </div>
-      
-      <div class="textSection" layout="row" layout-wrap>
-        <div flex-xs="90">The students, employees, and alumni of Southern Adventist University have a long tradition of serving others.</div>
-        <div flex-xs="90">Whether it's handing out warm clothes and sandwiches to the homeless in Chattanooga, providing free health clinics in Central America, or tutoring struggling middle-schoolers in your hometown, each moment makes a difference and brings a little light to the world. </div>
-        <div flex-xs="90">As we mark Southern's 125th anniversary, we want to honor that tradition by collecting your hours of service, aiming to reach a collective total of 125,000 by the end of the year. </div>
+
+      <div class="textSection"  layout-wrap>
+        <div layout="row" flex-xs="90" flex="70">The students, employees, and alumni of Southern Adventist University have a long tradition of serving others.</div>
+        <div layout="row" flex-xs="90" flex="70">Whether it's handing out warm clothes and sandwiches to the homeless in Chattanooga, providing free health clinics in Central America, or tutoring struggling middle-schoolers in your hometown, each moment makes a difference and brings a little light to the world. </div>
+        <div layout="row" flex-xs="90" flex="70">As we mark Southern's 125th anniversary, we want to honor that tradition by collecting your hours of service, aiming to reach a collective total of 125,000 by the end of the year. </div>
       </div>
-    
-   </div> 
-  
-  
-  
-  
-  
-  
+
+   </div>
+
+
+
+
+
+
   <script>
     (function(d,t,id) {
     var js, mmjs = d.getElementsByTagName(t)[0];
@@ -103,10 +113,10 @@
     js.id = id;
     js.src = '//www.southern.edu/app';
     mmjs.parentNode.insertBefore(js, mmjs);
-    }(document, 'script', 'southern-mmenu')); 
+    }(document, 'script', 'southern-mmenu'));
   </script>
-  
-  
+
+
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
@@ -121,17 +131,18 @@
 
     <!-- Angular Material Library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAK_7bEwS61JM3bQ_366jHqY4MRDtCPn3U",
-        authDomain: "logger-34958.firebaseapp.com",
-        databaseURL: "https://logger-34958.firebaseio.com",
-        storageBucket: "logger-34958.appspot.com",
-        messagingSenderId: "843316928664"
-      };
-      firebase.initializeApp(config);
-    </script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB7uSAkYLOn1RUUZZ8N1tOTjT8NKjDBJSg",
+    authDomain: "volunteer-hours-49f11.firebaseapp.com",
+    databaseURL: "https://volunteer-hours-49f11.firebaseio.com",
+    storageBucket: "volunteer-hours-49f11.appspot.com",
+    messagingSenderId: "883804297838"
+  };
+  firebase.initializeApp(config);
+</script>
     <script src="plugins/ripple.js"></script>
     <script src="plugins/ng-map.min.js"></script>
     <script src="js/app.module.js"></script>
