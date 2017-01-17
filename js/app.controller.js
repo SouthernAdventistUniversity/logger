@@ -84,14 +84,27 @@
             return time;
           });   
 
-          firebase.database().ref('users/' + cleanLoc).child('totalHours').on("value", function(values){
-            infowindow.setContent(
-              values.val() + ' hours from ' + data.city + ', ' + data.region_name
-            ); 
-          });  
-          infowindow.setPosition(center);
-          infowindow.open($scope.map);
+          NgMap.getMap().then(function(map){
+            var marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(data.latitude, data.longitude)
+            });
+            firebase.database().ref('users/' + cleanLoc).child('totalHours').on("value", function(values){
+              var info = new SnazzyInfoWindow({
+                marker: marker,
+                content: values.val() + ' hours from ' + data.city + ', ' + data.region_name,
+              });
+              $scope.windows.unshift(info);
+              if($scope.windows[1]){
+                $scope.windows[1].close();
+                $scope.windows.pop();
+              } 
+              info.open();
+            });  
+
+            
           });
+        });
       }
 
       $scope.infoWindow = function(event, data){
