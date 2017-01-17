@@ -20,13 +20,21 @@ md-input-container {
 
 #pusher {
     margin-top: 892px;
+
+}
+.logger {
+  padding-top: 192px;
+}
+
+.isSmall .logger {
+  padding-top: 0;
 }
 
 .map {
     height: 1050px;
     position: absolute;
     width: 100%;
-    top: 0;
+    top: 192px;
 }
 .isSmall .map {
     top: 72px !important;
@@ -102,7 +110,7 @@ ng-map {
   min-width: 14%;;
 }
 .progress::before {
-    content: attr(data-number);
+    content: attr(data-text);
     position: absolute;
     right: -75px;
     font-size: 24px;
@@ -147,7 +155,7 @@ ng-map {
 
 .formContainer {
     height: 1050px;
-    background-color: rgba(0, 82, 147, 0.75);
+    background-color: rgba(0, 37, 86, 0.85);
     box-sizing: border-box;
     padding: 95px;
     /*margin-top: 192px; */
@@ -199,6 +207,7 @@ ng-map {
 
 .form.complete {
     opacity: 0;
+    display: none;
 }
 
 label {
@@ -240,6 +249,50 @@ label {
     color: #FADA63 !important;
 }
 
+.close-btn {
+	display: block;
+	position: absolute;
+  top: 40px;
+  right: 35px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Open Sans;
+  padding-right: 25px;
+  pointer-events: all;
+  cursor: pointer;
+}
+.close-btn:before,
+.close-btn:after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 20px;
+  position: absolute;
+  right: 0;
+  top: 12px;
+  transform: rotate(45deg);
+  background-color: #fff;
+}
+.close-btn:after {
+  top: 12px;
+  transform: rotate(-45deg);
+}
+.show-btn {
+  text-shadow: 1px 1px 1px black;
+}
+.show-btn:before,
+.show-btn:after {
+
+}
+.show-btn:before {
+  transform: rotate(0deg);
+}
+.show-btn:after {
+  transform: rotate(90deg);
+}
+
 [angular-ripple] {
   position: relative;
   overflow: hidden;
@@ -269,7 +322,11 @@ label {
 
 @media screen and (min-width: 51.25em) {
   .banner {
-    margin-top: 130px;
+    margin-top: 60px;
+    transition: transform 300ms ease;
+  }
+  .banner.complete {
+    transform: translateY(-100px);
   }
   .isSmall .banner .bold {
     margin: 0 !important;

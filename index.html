@@ -49,9 +49,11 @@
       </div>
 
       <div class="formContainer" ng-cloak ng-class="{complete: complete}">
+      	<div class="close-btn" ng-hide="complete" ng-click="complete = true">Hide Form</div>
+        <div class="close-btn show-btn" ng-show="complete" ng-click="complete = false">Show Form</div>
 
         <div layout="row">
-          <div class="banner" flex-xs="100"><span class="bold">CELEBRATE</span><span> OUR ANNIVERSARY WHEREVER YOU ARE</span></div>
+          <div class="banner" ng-class="{complete: complete}" flex-xs="100"><span class="bold">CELEBRATE</span><span> OUR ANNIVERSARY WHEREVER YOU ARE</span></div>
         </div>
 
         <div layout="row">
@@ -89,7 +91,7 @@
       <div class="progressContainer" ng-class="{complete : current >= final}">
         <div class="final" ng-if="current < final">{{final | number:0}}</div>
         <div class="final" ng-if="current >= final">{{current | number:0}}</div>
-        <div class="progress" ng-attr-data-number="{{current | number:0}}" ng-if="current < final" style="width: {{(current/final)*100}}%;"></div>
+        <div class="progress" ng-attr-data-number="{{current | number:0}}" ng-attr-data-text="{{current | number:0}} hours" ng-if="current < final" style="width: {{(current/final)*100}}%;"></div>
       </div>
 
       <div class="textSection"  layout-wrap>
