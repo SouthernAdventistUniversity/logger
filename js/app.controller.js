@@ -12,6 +12,7 @@
       var self = this;
       $scope.service = {};
       $scope.complete = false;
+      $scope.windows = [];
       $scope.$watch(function() { return $mdMedia('max-width: 960px'); }, function(small) {
         $scope.screenIsSmall = small;
       });
@@ -45,12 +46,22 @@
       this.saveUser = function(name, body, hours) {
 
         $http.get('http://sau-geoiplookup.herokuapp.com/json/').then(function(response){
-          var data = response.data,
-              location = data.city + data.region_name,
-              cleanLoc = location.replace(/[.-]/g, ""),
-              userRef = firebase.database().ref().child('users/' + cleanLoc),
-              locHoursRef = firebase.database().ref('users/' + cleanLoc).child('totalHours'),
-              infowindow = new google.maps.InfoWindow(),
+          var data = response.data;
+          if(data.city){
+            var location = data.city + data.region_name,
+                cleanLoc = location.replace(/[.-]/g, ""),
+                userRef = firebase.database().ref().child('users/' + cleanLoc),
+                locHoursRef = firebase.database().ref('users/' + cleanLoc).child('totalHours');
+          } else {
+            $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + data.latitude + ',' + data.longitude).then(function(gResponse){
+              var location = gResponse.results[0].address_components[2].long_name + data.region_name,
+                  cleanLoc = location.replace(/[.-]/g, ""),
+                  userRef = firebase.database().ref().child('users/' + cleanLoc),
+                  locHoursRef = firebase.database().ref('users/' + cleanLoc).child('totalHours');
+            });
+          }  
+
+          var infowindow = new google.maps.InfoWindow(),
               center = new google.maps.LatLng(data.latitude + 2, data.longitude); 
 
           userRef.update({
@@ -84,31 +95,31 @@
       }
 
       $scope.infoWindow = function(event, data){
-        var center = new google.maps.LatLng(data.lat + 2, data.long),
-            loc = data.city + data.state,
+        
+        var center = new google.maps.LatLng(data[0] + 2, data[1]),
+            loc = data[2] + data[3],
             cleanLoc = loc.replace(/[.-]/g, "");
 
         NgMap.getMap().then(function(map){
           var marker = new google.maps.Marker({
             map: map,
-            position: new google.maps.LatLng(data.lat, data.long)
+            position: new google.maps.LatLng(data[0], data[1])
           });
           firebase.database().ref('users/' + cleanLoc).child('totalHours').on("value", function(values){
             var info = new SnazzyInfoWindow({
               marker: marker,
-              content: values.val() + ' hours from ' + data.city + ', ' + data.state
+              content: values.val() + ' hours from ' + data[2] + ', ' + data[3],
             });
+            $scope.windows.unshift(info);
+            if($scope.windows[1]){
+              $scope.windows[1].close();
+              $scope.windows.pop();
+            } 
             info.open();
           });  
 
           
         });
-
-
-
-
-        //infowindow.setPosition(center);
-        //infowindow.open($scope.map);
       }
 
     }
