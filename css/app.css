@@ -1,46 +1,90 @@
-html { background-color: #fff; }
-body { margin: 0;}
-.logger {}
-input { padding:0; margin: 0; border: none; }
-label { display: block; overflow: hidden; }
-.x3 { width: 25%; }
-.x4 { width: 33%; }
-.x6 { width: 50%; }
-.x12 { width: 100%; }
+html {
+    background-color: #fff;
+}
 
+body {
+    margin: 0;
+}
+
+.logger {}
+
+input {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+label {
+    display: block;
+    overflow: hidden;
+}
+
+.x3 {
+    width: 25%;
+}
+
+.x4 {
+    width: 33%;
+}
+
+.x6 {
+    width: 50%;
+}
+
+.x12 {
+    width: 100%;
+}
 
 md-input-container {
     width: 100%;
     text-align: left;
     color: #fff;
 }
+
 md-input-container {
     margin: 18px 0 0 !important;
 }
 
 #pusher {
     margin-top: 892px;
-
 }
+
 .logger {
-  padding-top: 192px;
+    padding-top: 125px;
+}
+.ver_a .logger {
+    padding-top: 125px;
 }
 
 .isSmall.logger {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 .map {
     height: 1050px;
     position: absolute;
     width: 100%;
-    top: 192px;
+    top: 125px;
 }
+.ver_a .map {
+    top: 125px;
+}
+
 .isSmall .map {
     top: 72px !important;
 }
+
 ng-map {
-    height:100%;
+    height: 100%;
+}
+
+.tl-slide-text-only .tl-slide-content-container .tl-slide-content .tl-text {
+    max-width: 500px !important
+}
+
+.tl-text-content {
+    font-size: 18px;
+    line-height: 1.4;
 }
 
 .banner {
@@ -55,6 +99,7 @@ ng-map {
     margin: 0 auto 45px;
     text-align: center;
 }
+
 .isSmall .banner {
     font-size: 36px !important;
     padding: 0 0 27px;
@@ -65,6 +110,7 @@ ng-map {
     font-weight: 700;
     display: inline-block;
 }
+
 .isSmall .banner .bold {
     margin-top: 26px !important;
 }
@@ -77,11 +123,13 @@ ng-map {
     font-family: Open Sans;
     background: #fff;
 }
+
 .textSection div {
     margin: 0 auto;
     margin-bottom: 29px;
     font-size: 24px;
 }
+
 .isSmall .textSection {
     padding: 40px 20px 20px 20px !important;
 }
@@ -94,9 +142,11 @@ ng-map {
     position: relative;
     z-index: 400;
 }
+
 .progressContainer.complete {
     text-align: center;
 }
+
 .progress {
     min-width: 5%;
     background: #CED54A;
@@ -107,9 +157,12 @@ ng-map {
     width: 0%;
     float: left;
 }
+
 .isSmall .progress {
-  min-width: 14%;;
+    min-width: 14%;
+    ;
 }
+
 .progress::before {
     content: attr(data-text);
     position: absolute;
@@ -122,6 +175,7 @@ ng-map {
     width: 150px;
     transition: .3s font-size ease-out;
 }
+
 .progress::after {
     content: '';
     display: block;
@@ -144,12 +198,14 @@ ng-map {
     font-weight: 600;
     display: inline-block;
 }
+
 .complete .final {
     right: 0;
     color: #184f2c;
     font-family: Open Sans;
     font-weight: bold;
 }
+
 .isSmall .final {
     display: none !important;
 }
@@ -159,14 +215,16 @@ ng-map {
     background-color: rgba(0, 37, 86, 0.85);
     box-sizing: border-box;
     padding: 95px;
-    /*margin-top: 192px; */
+    margin-top: 192px;
     position: relative;
     transition: .3s background-color ease-out;
     pointer-events: none;
 }
+
 .formContainer.complete {
     background-color: transparent;
 }
+
 .isSmall .formContainer {
     padding: 0 !important;
     top: 72px !important;
@@ -184,6 +242,7 @@ ng-map {
     transition: .3s opacity ease-out;
     padding-bottom: 30px;
 }
+
 .formText.complete {
     opacity: 0;
 }
@@ -214,10 +273,16 @@ ng-map {
 label {
     color: #70ADDD !important;
 }
+
 .form input {
     border-color: #fff !important;
     color: #fff !important;
     padding: 20px 0 !important;
+    height: auto !important;
+}
+
+md-input-container label:not(.md-container-ignore) {
+    bottom: 82% !important;
 }
 
 .loggerSubmit {
@@ -235,6 +300,7 @@ label {
     margin-top: 38px;
     transition: .3s all ease-out;
 }
+
 .isSmall .loggerSubmit {
     width: 90% !important;
 }
@@ -250,96 +316,108 @@ label {
 }
 
 .close-btn {
-	display: block;
-	position: absolute;
-  top: 40px;
-  right: 35px;
-  color: white;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 18px;
-  font-family: Open Sans;
-  padding-right: 25px;
-  pointer-events: all;
-  cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: 35px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Open Sans;
+    padding-right: 25px;
+    pointer-events: all;
+    cursor: pointer;
 }
+
 .close-btn:before,
 .close-btn:after {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 20px;
-  position: absolute;
-  right: 0;
-  top: 12px;
-  transform: rotate(45deg);
-  background-color: #fff;
+    content: "";
+    display: block;
+    height: 2px;
+    width: 20px;
+    position: absolute;
+    right: 0;
+    top: 12px;
+    transform: rotate(45deg);
+    background-color: #fff;
 }
-.close-btn:after {
-  top: 12px;
-  transform: rotate(-45deg);
-}
-.show-btn {
-  text-shadow: 1px 1px 1px black;
-}
-.show-btn:before,
-.show-btn:after {
 
+.close-btn:after {
+    top: 12px;
+    transform: rotate(-45deg);
 }
+
+.show-btn {
+    text-shadow: 1px 1px 1px black;
+}
+
+.show-btn:before,
+.show-btn:after {}
+
 .show-btn:before {
-  transform: rotate(0deg);
+    transform: rotate(0deg);
 }
+
 .show-btn:after {
-  transform: rotate(90deg);
+    transform: rotate(90deg);
 }
+
 .isSmall .show-btn,
 .isSmall .close-btn {
-  display: none;
+    display: none;
+}
+
+.gm-svpc,
+.gm-style-mtc {
+    display: none !important;
 }
 
 [angular-ripple] {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
+
 .angular-ripple {
-  display: block;
-  position: absolute;
-  background-color: rgba(0,0,0,0.1);
-  border-radius: 50%;
-  transform: scale(0);
+    display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    transform: scale(0);
 }
+
 .angular-ripple.animate {
-  animation: ripple 0.35s linear;
+    animation: ripple 0.35s linear;
 }
+
 @keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
 }
 
 @media screen and (min-width: 40em) {
-  .banner {
-    margin-top: 80px;
-  }
+    .banner {
+        margin-top: 80px;
+    }
 }
 
 @media screen and (min-width: 51.25em) {
-  .banner {
-    margin-top: 60px;
-    transition: transform 300ms ease;
-  }
-  .banner.complete {
-    transform: translateY(-100px);
-  }
-  .isSmall .banner .bold {
-    margin: 0 !important;
-  }
-  .isSmall .progress {
-    min-width: 4%;
-  }
+    .banner {
+        margin-top: 60px;
+        transition: all 300ms ease;
+    }
+    .banner.complete {
+        transform: translateY(-100px);
+        background-color: rgba(0, 0, 0, 0.18);
+    }
+    .isSmall .banner .bold {
+        margin: 0 !important;
+    }
+    .isSmall .progress {
+        min-width: 4%;
+    }
 }
 
-@media screen and (min-width: 53.25em) {
-
-}
+@media screen and (min-width: 53.25em) {}

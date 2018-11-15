@@ -7,6 +7,7 @@
             'angularRipple',
             'ngMap',
             'ngMaterial',
-            'ngMessages'
+            'ngMessages',
+            'ngTimeline',
         ]);
 })();

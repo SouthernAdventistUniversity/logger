@@ -1,0 +1,7 @@
+{
+  "name": "125",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-timelinejs3": "^0.2.3"
+  }
+}
